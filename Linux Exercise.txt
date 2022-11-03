@@ -1,0 +1,205 @@
+LINUX EXERCISE
+
+QUE 1. Create the following directories and files following the hierarchy structure
+
+HR, Operations, Finance (create directories) Test1, Test2, Test3, Operation1, Operation2, Finance1, Finance2 (create files)
+
+ANS - mkdir HR
+      mkdir Operations
+      mkdir Finance
+
+ls -l to check whether all direcories have been created or not.
+
+      cd HR 
+      touch Test1 Test2 Test3  
+
+ls in the HR directory to check whether files have been craeted or not.
+
+      cd ..                                                              (to go to home directory)
+      cd Operations
+      touch Operation1 Operation2
+
+ls in the Operations directory to check whether files have been craeted or not.
+
+      cd ..                                                              (again to go to home directory)
+      cd Finance
+      touch Finance1 Finance 2
+ 
+ls in the Finance directory to check whether files have been craeted or not.
+
+QUE 2. Copy the test1 file from HR directories to Finance directories
+
+ANS: cd ..
+     cp HR/Test1 Finance                                                  (Relative Path)
+     ls Finance                                                           (To check whether Test1 file has been copied to the Finance Directory or not) 
+
+
+QUE -3. Create a directory called Account under the Finance directory
+
+ANS: cd Finance
+     mkdir Account
+
+QUE 4. Create files Account1.csv, Account2.csv under Account directory
+
+ANS: cd Account
+     touch Account1.csv Account2.csv
+
+ls in the Account directory to check whether files have been craeted or not.
+
+Que a. Write below content (Account1.csv) 
+
+ANS:
+
+"ParticularName","ExpensesDate","Amount"
+"Busfare",'12-Jul-2005',2000
+"Coffeefare",'10-Apr-2010',5000
+"Cabfare",'12-Jul-2015',8000
+"Snacks",'10-Apr-2018',10000
+"Dinner",'10-Apr-2018',7000
+"Breakfast",'10-Jun-2015',3500
+
+
+	
+b. Write below content (Account2.csv)
+
+ANS:
+
+    "User_Name","Name","Job Title","Office_Phone","State","Country"
+    'chris@contoso.com',"Chris Green","IT Manager",'123-555-1211',"WA","United States"
+    'ben@contoso.com',"Ben Andrews","IT Manager",'123-555-1212',"TX","United States"
+    'david@contoso.com',"David Longmuir","IT Lead",'123-555-1213',"CH","India"
+    'cynthia@contoso.com',"Cynthia Carey","IT Team Lead",'123-555-1214',"DL","India"
+    'melissa@contoso.com',"Melissa MacBeth","IT Team Lead",'123-555-1215',"WA","United States"
+
+
+QUE 5. Copy all the entire structure of Finance directory to Operation directory
+
+ANS: cp -r Finance Operations
+
+QUE 6. Rename Account2.csv to Employee.csv
+
+ANS: cd Finance/Account
+     mv Account2.csv Employee.csv                                     
+
+
+QUE 7. Move the file Test1 to Operations
+
+ANS: mv HR/Test1 Operations
+
+QUE 8. Move all the files from HR directory Operation directory
+
+ANS: mv HR/Test1 Operations
+     mv HR/Test2 Operations
+
+QUE 9. Delete all the files which is present in HR directory
+
+ANS: 	cd HR  
+        rm [File Name]                                (Note: There are no current directories in HR Directory as Que-8 ask us to move all file from HR to Operations)
+
+QUE 10. Remove the entire Finance directory from Operation directory
+
+ANS: cd Operations
+     rm -r Finance
+
+QUE 11. Display the content of Account2.csv
+
+ANS: Account2.csv name has been changed to Employee.csv (as stated in Que-6)
+     
+     cd/Finance/Account
+     cat Employee.csv
+
+QUE 12. List all the files which is present in Finance directory except directory
+
+ANS: cd Finance
+     ls -I Account                                                                (Note: Account is the directory name under Finance Directory)
+
+QUE: 13. Display all the users connected to Ubuntu
+
+ANS: uname
+
+QUE 14. Search for all the files starting with T from the home directory
+
+ANS: ls -l T*
+
+
+QUE: 15. Create hidden file called “Test” under Finance directory
+
+ANS: cd Finance
+     touch .Test
+
+ls -al to check whether hidden file has been created or not.
+
+QUE 16: Filters
+a. Perform following operations with Account2.csv i. Display the Name in sorted order ii. Display the no of employees staying in India iii. Display the content in upper case iv. Display all the Name starting with “B”
+
+b. Perform following operations with Account1.csv i. Display two columns (ExpensesDate,Amount) ii. Display the details of 10-Apr-2018
+
+ANS: 
+
+(a) - i. Display the Name in sorted order
+      Soultion: sort Employee.csv                                               {Account2.csv name has been changed to Employee.csv (as stated in Que-6)}
+
+      ii. Display the no of employees staying in India
+      Solution: -Cat Employee.csv | grep -c "India"                             {Account2.csv name has been changed to Employee.csv (as stated in Que-6)}
+
+     iii. Display the content in upper case
+     Solution:cat Employee.csv | tr a-z A-Z
+
+     iv. Display all the Name starting with “B”
+     Solution: awk '{print $2 " " $3}' Employee.csv | grep '^B"                 {Account2.csv name has been changed to Employee.csv (as stated in Que-6)}
+
+(b) - i. Display two columns (ExpensesDate,Amount)
+      Solution: awk -F "," '{print $2 " " $3}' Account1.csv                             {since "-" is in the 2nd column i selected 3rd and 5th column to print ExpensesDate,Amount}
+ 
+
+      ii. Display the details of 10-Apr-2018 
+      Solution: cat Account1.csv | grep 10-Apr-2018
+
+QUE 17. Display all the process running in the Ubuntu system
+
+ANS: top
+
+QUE 18. Create two files under HR directory
+    a.	Sample1.txt
+    b.	Sample2.txt
+
+ANS:  cd HR
+      touch Sample1.txt Sample2.txt
+
+QUE 19. Permissions
+a.	Give read only permission for all the files which is in Operation directory
+b.	Remove all the permission for the files which is in Finance directory
+c.	Give write and execute for all the files which is in HR directory
+d.	Change the owner of Sample1.txt to Test2 user
+e.	Change the group of Sample2.txt to Test1 user
+
+ANS:   a.  chmod 100 Operations1 Operations2
+       b.  chmod 000 Account1.csv Employee.csv Finance1 Finance2 Operations Test
+       c.  chmod 011 Sample1.txt Sample2.txt
+       d.  sudo chown -v Test2 Sample1.txt
+       e.  sudo chown -v Test1 Sample2.txt
+
+QUE 20. Create users
+    a.	Test1
+    b.	Test2
+
+ANS: sudo useradd Test1
+     sudo useradd Test2
+
+cat /etc/passwd to check whether the users have been created or not.
+
+QUE 21. Display the command to view all the users which is existing in the system
+
+ANS: cd /
+     ls
+     cd etc
+     ls -l
+     cat passwd
+
+QUE 22. Create a compressed file for the Finance directory
+
+ANS: gzip -c Finance1 > Finance1.gz
+     gzip -c Finance2 > Finance2.gz
+     gzip -c Test1 > Test1.gz
+     gzip -c Account1.csv > Account1.gz
+     gzip -c Employee.csv > Employee.gz
